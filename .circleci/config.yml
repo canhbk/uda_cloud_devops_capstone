@@ -1,13 +1,28 @@
 version: 2.1
 jobs:
+  lint:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            # Install hadolint
+             wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+               chmod +x /bin/hadolint
+      - run:
+          name: Linting
+          command: |
+            hadolint Dockerfile
   build:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      # - setup_remote_docker:
-      #     version: 20.10.14
-      #     docker_layer_caching: true
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
       - run:
           name: Build application Docker image
           command: docker build -t uda_cloud_devops_capstone .
@@ -23,4 +38,5 @@ jobs:
 workflows:
   default:
     jobs:
+      - lint
       - build
