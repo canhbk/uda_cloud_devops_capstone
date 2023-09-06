@@ -5,11 +5,21 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      # - setup_remote_docker:
+      #     version: 20.10.14
+      #     docker_layer_caching: true
+      - run:
+          name: Build application Docker image
+          command: docker build -t uda_cloud_devops_capstone .
       - run:
           name: Docker login
           command: |
             echo ${DOCKER_HUB_PASSWORD} | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
-
+      - run:
+          name: Push Docker Image
+          command: |
+            docker tag uda_cloud_devops_capstone canhnv/uda_cloud_devops_capstone
+            docker push canhnv/uda_cloud_devops_capstone
 workflows:
   default:
     jobs:
