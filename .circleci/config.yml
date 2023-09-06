@@ -35,8 +35,22 @@ jobs:
           command: |
             docker tag uda_cloud_devops_capstone canhnv/uda_cloud_devops_capstone
             docker push canhnv/uda_cloud_devops_capstone
+  deploy:
+    docker:
+      - image: python:3.7.3-stretch
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - kubernetes/install-kubectl
 workflows:
   default:
     jobs:
       - lint
-      - build
+      - build:
+          requires:
+            - lint
+      - deploy:
+          requires:
+            - build
