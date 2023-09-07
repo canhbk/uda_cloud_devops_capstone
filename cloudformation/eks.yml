@@ -33,7 +33,7 @@ Resources:
         - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
         - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
 
-  EKS:
+  CapstoneEKS:
     Type: AWS::EKS::Cluster
     Properties:
       Version: "1.25"
@@ -49,7 +49,7 @@ Resources:
 Outputs:
   EksId:
     Description: The EKS id.
-    Value: !Ref EKS
+    Value: !Ref CapstoneEKS
     Export:
       Name: !Sub ${EnvironmentName}-EKS
 

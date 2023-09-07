@@ -10,7 +10,7 @@ Parameters:
   ImageID:
     Description: An image ID for EC2 Instance
     Type: String
-    Default: ami-0b14bf54c9cef7492
+    Default: ami-00c698c24ede5b160
 
   KeyPairName:
     Description: The EC2 Key Pair to allow SSH access to the instances
