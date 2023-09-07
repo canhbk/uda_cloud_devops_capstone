@@ -64,6 +64,9 @@ jobs:
           cluster-name: << parameters.cluster-name >>
           aws-region: << parameters.aws-region >>
           install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          resource-file-path: ./k8s/configmap.yml
+          resource-name: configmap/ aws-auth
 
       - kubernetes/create-or-update-resource:
           resource-file-path: ./k8s/deployment.yml
