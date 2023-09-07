@@ -22,7 +22,7 @@ spec:
         app: uda-cloud-devops-capstone
     spec:
       containers:
-        - image: canhnv/uda-cloud-devops-capstone:latest
+        - image: canhnv/uda_cloud_devops_capstone:latest
           imagePullPolicy: Always
           name: uda-cloud-devops-capstone
           ports:
