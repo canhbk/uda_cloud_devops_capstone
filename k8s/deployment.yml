@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: uda_cloud_devops_capstone
+  name: uda-cloud-devops-capstone
   labels:
-    app: uda_cloud_devops_capstone
+    app: uda-cloud-devops-capstone
   namespace: default
 spec:
   progressDeadlineSeconds: 3600
   replicas: 3
   selector:
     matchLabels:
-      app: uda_cloud_devops_capstone
+      app: uda-cloud-devops-capstone
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,12 +19,12 @@ spec:
   template:
     metadata:
       labels:
-        app: uda_cloud_devops_capstone
+        app: uda-cloud-devops-capstone
     spec:
       containers:
-        - image: canhnv/uda_cloud_devops_capstone:latest
+        - image: canhnv/uda-cloud-devops-capstone:latest
           imagePullPolicy: Always
-          name: uda_cloud_devops_capstone
+          name: uda-cloud-devops-capstone
           ports:
             - containerPort: 3000
           resources:
@@ -39,13 +39,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: uda_cloud_devops_capstone
+  name: uda-cloud-devops-capstone
   labels:
-    app: uda_cloud_devops_capstone
+    app: uda-cloud-devops-capstone
 spec:
   type: LoadBalancer
   selector:
-    app: uda_cloud_devops_capstone
+    app: uda-cloud-devops-capstone
   ports:
     - port: 80
       targetPort: 3000
